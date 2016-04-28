@@ -29,6 +29,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/korean', {
+        templateUrl: 'views/korean.html',
+        controller: 'KoreanCtrl',
+        controllerAs: 'korean'
+      })
       .otherwise({
         redirectTo: '/'
       });

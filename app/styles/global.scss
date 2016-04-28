@@ -1,0 +1,33 @@
+$white: #fff;
+
+* {margin: 0; padding: 0;}
+
+body {
+    padding: 0;
+    background-color: #456878;
+}
+
+.navbar-default {
+    background: #7092a0;
+    border: 0;
+    border: 1px solid $gray-light;
+    
+    .navbar-brand, .navbar-nav li > a {
+        color: $white;
+    }
+}
+
+.header {
+  border-bottom: 1px solid $gray-dark;
+  margin-bottom: 10px;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+}

@@ -9,7 +9,7 @@
 angular.module('virtualKeyboardWithAngularApp')
   .directive('keyboard', function () {
     return {
-        templateUrl: 'views/keyboard.html',
+        templateUrl: 'views/keyboard/korean.html',
         restrict: 'E'
     };
 });
