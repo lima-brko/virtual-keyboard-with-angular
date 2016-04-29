@@ -4,6 +4,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 // Custom styles
+@import "portions/variables.scss";
 @import "global.scss";
 @import "keyboard/default.scss";
 @import "keyboard/korean.scss";
