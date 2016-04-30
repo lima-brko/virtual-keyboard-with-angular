@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/scripts/controllers/korean.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/directives/display.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/scripts/services/korean.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/styles/global.scss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/styles/keyboard/default.scss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/styles/keyboard/korean.scss" charset="UTF-8" />
