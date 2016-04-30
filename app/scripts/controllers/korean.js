@@ -10,6 +10,7 @@
 angular.module('virtualKeyboardWithAngularApp')
     .controller('KoreanCtrl', ['$scope', function($scope) {
 
+
     $scope.charClick = function(){
       alert('entrou');
     };
@@ -81,7 +82,7 @@ angular.module('virtualKeyboardWithAngularApp')
         {"keyCode": "", "index": "54", "s": "", "m": "", "p": "control", "class": ["control"]},
         {"keyCode": "", "index": "55", "s": "", "m": "", "p": "option", "class": ["option"]},
         {"keyCode": "", "index": "56", "s": "", "m": "", "p": "command", "class": ["command"]},
-        {"keyCode": "", "index": "57", "s": "", "m": "", "p": "spacebar", "class": ["spacebar"]},
+        {"keyCode": "32", "index": "57", "s": "", "m": "", "p": "spacebar", "class": ["spacebar"]},
         {"keyCode": "", "index": "58", "s": "", "m": "", "p": "command", "class": ["command", "right"]},
         {"keyCode": "", "index": "59", "s": "", "m": "", "p": "option", "class": ["option", "right"]},
         {"keyCode": "37", "index": "60", "s": "", "m": "", "p": "\u25C0", "class": ["arrow", "ar-left"]},

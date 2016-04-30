@@ -1,9 +1,10 @@
 <div class="row">
     <div class="col-xs-12">
+        <h1>Korean Keyboard - 한국어 키보드</h1>
         <div class="row">
             <div class="double-display clearfix">
                 <div class="col-xs-6">
-                    <textarea class="form-control keyboard-display" rows="4" display></textarea>
+                  <textarea class="form-control keyboard-display" rows="4" placeholder="Type your korean text here..." display></textarea>
                 </div>
                 <div class="col-xs-6">
                     <textarea class="form-control translate-display" rows="4" readonly></textarea>
@@ -15,7 +16,7 @@
       <div class="keyboard clearfix">
         <ul ng-repeat="(group, chars) in macChars" class="{{group}}">
           <li ng-repeat="char in chars" ng-class="char.class" ng-click="charClick()">
-            <a href class="key c{{char.keyCode}}">
+            <a href class="key c{{char.keyCode}}" ng-class="{'keydown': char.active}">
               <span class="s">{{char.s}}</span>
               <span class="m">{{char.m}}</span>
               <span class="p">{{char.p}}</span>

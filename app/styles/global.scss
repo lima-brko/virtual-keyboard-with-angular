@@ -30,5 +30,12 @@ body {
   }
 }
 
+h1 {
+  text-align: center;
+  color: $white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: 768px) {
 }
