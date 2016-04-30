@@ -11,7 +11,7 @@
     float: left;
   }
 
-  .key{
+  .key {
     display: block;
     color: #aaa;
     font: bold 9pt arial;
@@ -68,6 +68,7 @@
     border-top: 1px solid #eee;
   }
 
+
   .left {
     .key {
       padding-left: 4px;
@@ -91,6 +92,24 @@
 
     .p {
       margin: 23px 0 0;
+    }
+  }
+
+  &.mod {
+    .m {
+      color: #868686;
+    }
+
+    .left {
+      .key {
+        .m {
+          color: #868686;
+        }
+
+        .s {
+          color: #CCCCCC;
+        }
+      }
     }
   }
 

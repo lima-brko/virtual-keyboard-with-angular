@@ -10,6 +10,7 @@
 angular.module('virtualKeyboardWithAngularApp')
     .controller('KoreanCtrl', ['$scope', function($scope) {
 
+    $scope.modOn = false;
 
     $scope.charClick = function(){
       alert('entrou');
