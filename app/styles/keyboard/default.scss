@@ -1,14 +1,16 @@
 $keyboardBg: #CED1D8;
 
 .double-display {
-    background: $keyboardBg;
-    padding: 20px 20px 0;
-	  max-width: 830px;
-    margin: 0 auto;
+  background: $keyboardBg;
+  padding: 20px 20px 0;
+  max-width: 830px;
+  margin: 0 auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 
-    .col-xs-6 {
-        padding: 0;
-    }
+  .col-xs-6 {
+      padding: 0;
+  }
 }
 
 .keyboard-display, .translate-display {
@@ -31,8 +33,10 @@ $keyboardBg: #CED1D8;
 }
 
 .keyboard {
-    margin: 0 auto;
-    padding: 20px 0 20px 25px;
-	  max-width: 830px;
-    background: $keyboardBg;
+  margin: 0 auto;
+  padding: 20px 0 20px 25px;
+  max-width: 830px;
+  background: $keyboardBg;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

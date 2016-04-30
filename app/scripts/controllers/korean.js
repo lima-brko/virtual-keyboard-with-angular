@@ -8,90 +8,18 @@
  * Controller of the virtualKeyboardWithAngularApp
  */
 angular.module('virtualKeyboardWithAngularApp')
-    .controller('KoreanCtrl', ['$scope', function($scope) {
+    .controller('KoreanCtrl', ['$scope', 'korean', function($scope, korean) {
 
-    $scope.modOn = false;
+    $scope.modOn = korean.getModOn();
+    $scope.modCaps = korean.getModCaps();
 
     $scope.charClick = function(){
       alert('entrou');
+      var e = new KeyboardEvent('keydown', ['', '', 0, korean.ctrlKey, korean.shiftKey, korean.altKey, korean.metaKey, false, false, 49, 49]);
+      korean.activateKey($scope.textarea, e);
     };
 
-    $scope.macChars = {
-      'top': [
-        {"keyCode": "192", "index": "0", "s": "", "m": "~", "p": "`", "class": ["center"]},
-        {"keyCode": "49", "index": "1", "s": "", "m": "!", "p": "1", "class": []},
-        {"keyCode": "50", "index": "2", "s": "", "m": "@", "p": "2", "class": []},
-        {"keyCode": "51", "index": "3", "s": "", "m": "#", "p": "3", "class": []},
-        {"keyCode": "52", "index": "4", "s": "", "m": "$", "p": "4", "class": []},
-        {"keyCode": "53", "index": "5", "s": "", "m": "%", "p": "5", "class": []},
-        {"keyCode": "54", "index": "6", "s": "", "m": "^", "p": "6", "class": []},
-        {"keyCode": "55", "index": "7", "s": "", "m": "&", "p": "7", "class": []},
-        {"keyCode": "56", "index": "8", "s": "", "m": "*", "p": "8", "class": []},
-        {"keyCode": "57", "index": "9", "s": "", "m": "(", "p": "9", "class": []},
-        {"keyCode": "48", "index": "10", "s": "", "m": ")", "p": "0", "class": []},
-        {"keyCode": "189", "index": "11", "s": "", "m": "_", "p": "-", "class": ["alt"]},
-        {"keyCode": "187", "index": "12", "s": "", "m": "+", "p": "=", "class": []},
-        {"keyCode": "46", "index": "13", "s": "", "m": "", "p": "delete", "class": ["delete"]}
-      ],
-      'qwert': [
-        {"keyCode": "9", "index": "14", "s": "", "m": "", "p": "tab", "class": ["tab"]},
-        {"keyCode": "81", "index": "15", "s": "ㅂ", "m": "ㅃ", "p": "q", "class": ["left"]},
-        {"keyCode": "87", "index": "16", "s": "ㅈ", "m": "ㅉ", "p": "w", "class": ["left"]},
-        {"keyCode": "69", "index": "17", "s": "ㄷ", "m": "ㄸ", "p": "e", "class": ["left"]},
-        {"keyCode": "82", "index": "18", "s": "ㄱ", "m": "ㄲ", "p": "r", "class": ["left"]},
-        {"keyCode": "84", "index": "19", "s": "ㅅ", "m": "ㅆ", "p": "t", "class": ["left"]},
-        {"keyCode": "89", "index": "20", "s": "ㅛ", "m": "", "p": "y", "class": ["left"]},
-        {"keyCode": "85", "index": "21", "s": "ㅕ", "m": "", "p": "u", "class": ["left"]},
-        {"keyCode": "73", "index": "22", "s": "ㅑ", "m": "", "p": "i", "class": ["left"]},
-        {"keyCode": "79", "index": "23", "s": "ㅐ", "m": "ㅒ", "p": "o", "class": ["left"]},
-        {"keyCode": "80", "index": "24", "s": "ㅔ", "m": "ㅖ", "p": "p", "class": ["left"]},
-        {"keyCode": "219", "index": "25", "s": "", "m": "{", "p": "[", "class": []},
-        {"keyCode": "221", "index": "26", "s": "", "m": "}", "p": "]", "class": []},
-        {"keyCode": "220", "index": "27", "s": "", "m": "|", "p": "\\", "class": []}
-      ],
-      'asdfg': [
-        {"keyCode": "20", "index": "28", "s": "", "m": "", "p": "caps lock", "class": ["caps"]},
-        {"keyCode": "65", "index": "29", "s": "ㅁ", "m": "", "p": "a", "class": ["left"]},
-        {"keyCode": "83", "index": "30", "s": "ㄴ", "m": "", "p": "s", "class": ["left"]},
-        {"keyCode": "68", "index": "31", "s": "ㅇ", "m": "", "p": "d", "class": ["left"]},
-        {"keyCode": "70", "index": "32", "s": "ㄹ", "m": "", "p": "f", "class": ["left"]},
-        {"keyCode": "71", "index": "33", "s": "ㅎ", "m": "", "p": "g", "class": ["left"]},
-        {"keyCode": "72", "index": "34", "s": "ㅗ", "m": "", "p": "h", "class": ["left"]},
-        {"keyCode": "74", "index": "35", "s": "ㅓ", "m": "", "p": "j", "class": ["left"]},
-        {"keyCode": "75", "index": "36", "s": "ㅏ", "m": "", "p": "k", "class": ["left"]},
-        {"keyCode": "76", "index": "37", "s": "ㅣ", "m": "", "p": "l", "class": ["left"]},
-        {"keyCode": "186", "index": "38", "s": "", "m": ":", "p": ";", "class": []},
-        {"keyCode": "222", "index": "39", "s": "", "m": "\"", "p": "'", "class": []},
-        {"keyCode": "13", "index": "40", "s": "", "m": "", "p": "return", "class": ["return"]}
-      ],
-      'zxcvb': [
-        {"keyCode": "16", "index": "41", "s": "", "m": "", "p": "shift", "class": ["shift"]},
-        {"keyCode": "90", "index": "42", "s": "ㅋ", "m": "", "p": "z", "class": ["left"]},
-        {"keyCode": "88", "index": "43", "s": "ㅌ", "m": "", "p": "x", "class": ["left"]},
-        {"keyCode": "67", "index": "44", "s": "ㅊ", "m": "", "p": "c", "class": ["left"]},
-        {"keyCode": "86", "index": "45", "s": "ㅍ", "m": "", "p": "v", "class": ["left"]},
-        {"keyCode": "66", "index": "46", "s": "ㅠ", "m": "", "p": "b", "class": ["left"]},
-        {"keyCode": "78", "index": "47", "s": "ㅜ", "m": "", "p": "n", "class": ["left"]},
-        {"keyCode": "77", "index": "48", "s": "ㅡ", "m": "", "p": "m", "class": ["left"]},
-        {"keyCode": "188", "index": "49", "s": "", "m": "<", "p": ",", "class": []},
-        {"keyCode": "190", "index": "50", "s": "", "m": ">", "p": ".", "class": []},
-        {"keyCode": "191", "index": "51", "s": "", "m": "?", "p": "/", "class": []},
-        {"keyCode": "16", "index": "52", "s": "", "m": "", "p": "shift", "class": ["shift", "right"]}
-      ],
-      'bottom': [
-        {"keyCode": "", "index": "53", "s": "", "m": "", "p": "fn", "class": ["fn"]},
-        {"keyCode": "", "index": "54", "s": "", "m": "", "p": "control", "class": ["control"]},
-        {"keyCode": "", "index": "55", "s": "", "m": "", "p": "option", "class": ["option"]},
-        {"keyCode": "", "index": "56", "s": "", "m": "", "p": "command", "class": ["command"]},
-        {"keyCode": "32", "index": "57", "s": "", "m": "", "p": "spacebar", "class": ["spacebar"]},
-        {"keyCode": "", "index": "58", "s": "", "m": "", "p": "command", "class": ["command", "right"]},
-        {"keyCode": "", "index": "59", "s": "", "m": "", "p": "option", "class": ["option", "right"]},
-        {"keyCode": "37", "index": "60", "s": "", "m": "", "p": "\u25C0", "class": ["arrow", "ar-left"]},
-        {"keyCode": "38", "index": "61", "s": "", "m": "", "p": "\u25B2", "class": ["arrow", "ar-up"]},
-        {"keyCode": "40", "index": "62", "s": "", "m": "", "p": "\u25BC", "class": ["arrow", "ar-down"]},
-        {"keyCode": "39", "index": "63", "s": "", "m": "", "p": "\u25B6", "class": ["arrow", "ar-right"]}
-      ]
-    };
+    $scope.macChars = korean.getMacChars();
 
     //$scope.chars = [
     //  //Row top

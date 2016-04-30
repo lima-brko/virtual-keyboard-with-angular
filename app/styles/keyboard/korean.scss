@@ -113,6 +113,17 @@
     }
   }
 
+  &.mod-caps {
+    .asdfg .caps {
+      .m {
+        background: #29DC26;
+        -webkit-box-shadow: 0 0 5px #21E81F;
+        -moz-box-shadow: 0 0 5px #21E81F;
+        box-shadow: 0 0 5px #21E81F;
+      }
+    }
+  }
+
   .top {
     .alt .m {
       margin: 0 0 3px;

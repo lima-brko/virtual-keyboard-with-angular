@@ -4,7 +4,7 @@
         <div class="row">
             <div class="double-display clearfix">
                 <div class="col-xs-6">
-                  <textarea class="form-control keyboard-display" rows="4" placeholder="Type your korean text here..." display></textarea>
+                  <textarea class="form-control keyboard-display" rows="4" placeholder="Type your korean text here..." ng-model="textarea" display></textarea>
                 </div>
                 <div class="col-xs-6">
                     <textarea class="form-control translate-display" rows="4" readonly></textarea>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-xs-12">
-      <div class="keyboard clearfix" ng-class="{'mod': modOn}">
+      <div class="keyboard clearfix" ng-class="[{'mod': modOn}, {'mod-caps': modCaps}]">
         <ul ng-repeat="(group, chars) in macChars" class="{{group}}">
           <li ng-repeat="char in chars" ng-class="char.class" ng-click="charClick()">
             <a href class="key c{{char.keyCode}}" ng-class="{'keydown': char.active}">
