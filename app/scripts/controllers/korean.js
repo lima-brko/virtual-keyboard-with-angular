@@ -10,6 +10,10 @@
 angular.module('virtualKeyboardWithAngularApp')
     .controller('KoreanCtrl', ['$scope', function($scope) {
 
+    $scope.charClick = function(){
+      alert('entrou');
+    };
+
     $scope.macChars = {
       'top': [
         {"keyCode": "192", "index": "0", "s": "", "m": "~", "p": "`", "class": ["center"]},
@@ -54,8 +58,8 @@ angular.module('virtualKeyboardWithAngularApp')
         {"keyCode": "74", "index": "35", "s": "ㅓ", "m": "", "p": "j", "class": ["left"]},
         {"keyCode": "75", "index": "36", "s": "ㅏ", "m": "", "p": "k", "class": ["left"]},
         {"keyCode": "76", "index": "37", "s": "ㅣ", "m": "", "p": "l", "class": ["left"]},
-        {"keyCode": "186", "index": "38", "s": ";", "m": ":", "p": ";", "class": ["left"]},
-        {"keyCode": "222", "index": "39", "s": "'", "m": "\"", "p": "'", "class": ["left"]},
+        {"keyCode": "186", "index": "38", "s": "", "m": ":", "p": ";", "class": []},
+        {"keyCode": "222", "index": "39", "s": "", "m": "\"", "p": "'", "class": []},
         {"keyCode": "13", "index": "40", "s": "", "m": "", "p": "return", "class": ["return"]}
       ],
       'zxcvb': [
@@ -67,9 +71,9 @@ angular.module('virtualKeyboardWithAngularApp')
         {"keyCode": "66", "index": "46", "s": "ㅠ", "m": "", "p": "b", "class": ["left"]},
         {"keyCode": "78", "index": "47", "s": "ㅜ", "m": "", "p": "n", "class": ["left"]},
         {"keyCode": "77", "index": "48", "s": "ㅡ", "m": "", "p": "m", "class": ["left"]},
-        {"keyCode": "188", "index": "49", "s": ",", "m": "<", "p": ",", "class": ["left"]},
-        {"keyCode": "190", "index": "50", "s": ".", "m": ">", "p": ".", "class": ["left"]},
-        {"keyCode": "191", "index": "51", "s": "/", "m": "?", "p": "/", "class": ["left"]},
+        {"keyCode": "188", "index": "49", "s": "", "m": "<", "p": ",", "class": []},
+        {"keyCode": "190", "index": "50", "s": "", "m": ">", "p": ".", "class": []},
+        {"keyCode": "191", "index": "51", "s": "", "m": "?", "p": "/", "class": []},
         {"keyCode": "16", "index": "52", "s": "", "m": "", "p": "shift", "class": ["shift", "right"]}
       ],
       'bottom': [
@@ -80,10 +84,10 @@ angular.module('virtualKeyboardWithAngularApp')
         {"keyCode": "", "index": "57", "s": "", "m": "", "p": "spacebar", "class": ["spacebar"]},
         {"keyCode": "", "index": "58", "s": "", "m": "", "p": "command", "class": ["command", "right"]},
         {"keyCode": "", "index": "59", "s": "", "m": "", "p": "option", "class": ["option", "right"]},
-        {"keyCode": "37", "index": "60", "s": "", "m": "", "p": "&#x25C0;", "class": ["arrow", "ar-left"]},
-        {"keyCode": "38", "index": "61", "s": "", "m": "", "p": "&#x25B2;", "class": ["arrow", "ar-up"]},
-        {"keyCode": "40", "index": "62", "s": "", "m": "", "p": "&#x25BC;", "class": ["arrow", "ar-down"]},
-        {"keyCode": "39", "index": "63", "s": "", "m": "", "p": "&#x25B6;", "class": ["arrow", "ar-right"]}
+        {"keyCode": "37", "index": "60", "s": "", "m": "", "p": "\u25C0", "class": ["arrow", "ar-left"]},
+        {"keyCode": "38", "index": "61", "s": "", "m": "", "p": "\u25B2", "class": ["arrow", "ar-up"]},
+        {"keyCode": "40", "index": "62", "s": "", "m": "", "p": "\u25BC", "class": ["arrow", "ar-down"]},
+        {"keyCode": "39", "index": "63", "s": "", "m": "", "p": "\u25B6", "class": ["arrow", "ar-right"]}
       ]
     };
 

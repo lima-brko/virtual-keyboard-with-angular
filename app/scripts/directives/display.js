@@ -9,7 +9,6 @@
 angular.module('virtualKeyboardWithAngularApp')
   .directive('display', function () {
     return function (scope, element) {
-
         element.bind("keydown keypress", function (e) {
           e.preventDefault();
           var key = (e.keyCode) ? e.keyCode : e.which;

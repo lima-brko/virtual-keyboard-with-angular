@@ -10,13 +10,12 @@
                 </div>
             </div>
         </div>
-        <keyboard></keyboard>
     </div>
     <div class="col-xs-12">
-      <div class="keyboard2 clearfix">
+      <div class="keyboard clearfix">
         <ul ng-repeat="(group, chars) in macChars" class="{{group}}">
-          <li ng-repeat="char in chars" ng-class="char.class">
-            <a href="#" class="key c{{char.keyCode}}">
+          <li ng-repeat="char in chars" ng-class="char.class" ng-click="charClick()">
+            <a href class="key c{{char.keyCode}}">
               <span class="s">{{char.s}}</span>
               <span class="m">{{char.m}}</span>
               <span class="p">{{char.p}}</span>
