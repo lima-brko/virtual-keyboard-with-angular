@@ -50,7 +50,7 @@ angular.module('virtualKeyboardWithAngularApp')
           item.active = true;
         }
       });
-    }
+    };
 
     // Translate after text change
     $scope.$watch('keyboardDisplay', function() {
