@@ -47,7 +47,10 @@ angular.module('virtualKeyboardWithAngularApp')
             'key=trnsl.1.1.20160501T185803Z.96bf64b58cb32f24.0efa272d3bdb65f158cabeb0b14faf319b33a42b'+
             '&lang=ko-en'+
             '&text=' + encodeURI(korean.getDisplayText()))
+          //$http.get('http://api.microsofttranslator.com/v2/Http.svc/Translate?appId=talktofill&from=ko&to=en'+
+          //  '&text=' + encodeURI(korean.getDisplayText()))
             .then(function(response){
+
             console.log('');
               $scope.translatedDisplay = response.data;
             });

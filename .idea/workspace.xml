@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2525a4-46d4-4f2d-90a8-59c353192b2b" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\workspace\host\virtual-keyboard-with-angular\app\scripts\directives\keyboard.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\host\virtual-keyboard-with-angular\app\views\korean\index.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\host\virtual-keyboard-with-angular\nbproject\project.properties" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\host\virtual-keyboard-with-angular\nbproject\project.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/directives/display.js" afterPath="$PROJECT_DIR$/app/scripts/directives/display.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/global.scss" afterPath="$PROJECT_DIR$/app/styles/global.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/korean.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/korean.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/services/korean.js" afterPath="$PROJECT_DIR$/app/scripts/services/korean.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="virtual-keyboard-with-angular.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +66,8 @@
       <file leaf-file-name="korean.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/controllers/korean.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6964286">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.65848213">
+              <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -764,8 +752,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/korean.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6964286">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.65848213">
+          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
           <folding />
         </state>
       </provider>
