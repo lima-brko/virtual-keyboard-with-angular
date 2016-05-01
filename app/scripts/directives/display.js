@@ -7,16 +7,22 @@
  * # display
  */
 angular.module('virtualKeyboardWithAngularApp')
-  .directive('display',function (korean) {
+  .directive('display', function (korean) {
     return function (scope, element) {
       // Bind textarea to listen keydown and keypress
       element.bind("keydown keypress", function (e) {
-        korean.activateKey(e.currentTarget, e, true);
+        korean.setModChars(e);
+        if(korean.activateKey(e.currentTarget, (e.keyCode) ? e.keyCode : e.which, 'keydown')) {
+          e.preventDefault();
+        }
       });
 
       // Bind textarea to listen keyup
       element.bind("keyup", function (e) {
-        korean.activateKey(e.currentTarget, e, false);
+        korean.setModChars(e);
+        if(korean.activateKey(e.currentTarget, (e.keyCode) ? e.keyCode : e.which, 'keyup')) {
+          e.preventDefault();
+        }
       });
     };
 });

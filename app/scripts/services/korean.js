@@ -15,16 +15,21 @@ angular.module('virtualKeyboardWithAngularApp')
       dMedial = [0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 801, 820, 0, 0, 1304, 1305, 1320, 0, 0, 1820],
       dFinale = [0, 0, 0, 119, 0, 422, 427, 0, 0, 801, 816, 817, 819, 825, 826, 827, 0, 0, 1719, 0, 1919],
       SBase = 44032,
-      LBase = 4352,
+      //LBase = 4352,
       VBase = 12623,
-      TBase = 4519,
+      //TBase = 4519,
       LCount = 19,
       VCount = 21,
       TCount = 28,
       NCount = 588,
       SCount = 11172,
+      displayText = '',
       modOn = false,
       modCaps = false,
+      ctrlKey = false,
+      shiftKey = false,
+      altKey = false,
+      //metaKey = false,
       macChars = {
         'top': [
           {"keyCode": "192", "index": "0", "s": "", "m": "~", "p": "`", "class": ["center"]},
@@ -102,6 +107,28 @@ angular.module('virtualKeyboardWithAngularApp')
         ]
       };
 
+    this.getModOn = function(){
+      return modOn;
+    };
+
+    this.getModCaps = function(){
+      return modCaps;
+    };
+
+    this.getMacChars = function(){
+      return macChars;
+    };
+
+    this.setModChars = function(e){
+      ctrlKey = e.ctrlKey;
+      shiftKey = e.shiftKey;
+      altKey = e.altKey;
+    };
+
+    this.getText = function(){
+      return displayText;
+    };
+
     /**
      * Get the length of start selection
      * @param {Object} textarea
@@ -110,7 +137,7 @@ angular.module('virtualKeyboardWithAngularApp')
     function getSelectionStart(textarea) {
       textarea.focus();
       return textarea.selectionStart;
-    };
+    }
 
     /**
      * Get the length of end selection
@@ -120,7 +147,7 @@ angular.module('virtualKeyboardWithAngularApp')
     function getSelectionEnd(textarea) {
       textarea.focus();
       return textarea.selectionEnd;
-    };
+    }
 
     /**
      * Add the translated char to the textarea
@@ -129,22 +156,22 @@ angular.module('virtualKeyboardWithAngularApp')
      * @param {Number} end
      */
     function setCharInPosition(textarea, start, end) {
-      var len = textarea.value.length;
+      var len = displayText.length;
       if (start > len) {
-        start = len
+        start = len;
       }
       if (start + end > len) {
-        end = len - end
+        end = len - end;
       }
       textarea.focus();
       textarea.setSelectionRange(start, start + end);
       textarea.focus();
-    };
+    }
 
     function composeKorean (text) {
       var textLen = text.length;
-      if (textLen == 0) {
-        return ""
+      if (textLen === 0) {
+        return "";
       }
       var firstUnicode = text.charCodeAt(0),
         firstChar = String.fromCharCode(firstUnicode),
@@ -159,31 +186,31 @@ angular.module('virtualKeyboardWithAngularApp')
       for (var i = 1; i < textLen; ++i) {
         curUnicode = text.charCodeAt(i);
         initialIndex = initial.indexOf(firstUnicode);
-        if (initialIndex != -1) {
+        if (initialIndex !== -1) {
           mergeUnicode = curUnicode - VBase;
           if (0 <= mergeUnicode && mergeUnicode < VCount) {
             firstUnicode = SBase + (initialIndex * VCount + mergeUnicode) * TCount;
             firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode);
-            continue
+            continue;
           }
         }
         SBaseUnicode = firstUnicode - SBase;
-        if (0 <= SBaseUnicode && SBaseUnicode < 11145 && (SBaseUnicode % TCount) == 0) {
+        if (0 <= SBaseUnicode && SBaseUnicode < 11145 && (SBaseUnicode % TCount) === 0) {
           finaleIndex = finale.indexOf(curUnicode);
-          if (finaleIndex != -1) {
+          if (finaleIndex !== -1) {
             firstUnicode += finaleIndex;
             firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode);
-            continue
+            continue;
           }
           mergeUnicode = (SBaseUnicode % NCount) / TCount;
           medialIndex = dMedial.indexOf((mergeUnicode * 100) + (curUnicode - VBase));
           if (medialIndex > 0) {
             firstUnicode += (medialIndex - mergeUnicode) * TCount;
             firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode);
-            continue
+            continue;
           }
         }
-        if (0 <= SBaseUnicode && SBaseUnicode < 11172 && (SBaseUnicode % TCount) != 0) {
+        if (0 <= SBaseUnicode && SBaseUnicode < 11172 && (SBaseUnicode % TCount) !== 0) {
           finaleIndex = SBaseUnicode % TCount;
           mergeUnicode = curUnicode - VBase;
           if (0 <= mergeUnicode && mergeUnicode < VCount) {
@@ -192,27 +219,27 @@ angular.module('virtualKeyboardWithAngularApp')
               firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode - finaleIndex);
               firstUnicode = SBase + (initialIndex * VCount + mergeUnicode) * TCount;
               firstChar = firstChar + String.fromCharCode(firstUnicode);
-              continue
+              continue;
             }
-            if (finaleIndex < dFinale.length && dFinale[finaleIndex] != 0) {
+            if (finaleIndex < dFinale.length && dFinale[finaleIndex] !== 0) {
               firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode - finaleIndex + Math.floor(dFinale[finaleIndex] / 100));
               firstUnicode = SBase + (initial.indexOf(finale[(dFinale[finaleIndex] % 100)]) * VCount + mergeUnicode) * TCount;
               firstChar = firstChar + String.fromCharCode(firstUnicode);
-              continue
+              continue;
             }
           }
           dFinaleIndex = dFinale.indexOf((finaleIndex * 100) + finale.indexOf(curUnicode));
           if (dFinaleIndex > 0) {
             firstUnicode = firstUnicode + dFinaleIndex - finaleIndex;
             firstChar = firstChar.slice(0, firstChar.length - 1) + String.fromCharCode(firstUnicode);
-            continue
+            continue;
           }
         }
         firstUnicode = curUnicode;
-        firstChar = firstChar + String.fromCharCode(curUnicode)
+        firstChar = firstChar + String.fromCharCode(curUnicode);
       }
       return firstChar;
-    };
+    }
 
     function decomposeKorean(text) {
       var len = text.length,
@@ -228,92 +255,76 @@ angular.module('virtualKeyboardWithAngularApp')
         SBaseUnicode = curUnicode - SBase;
         if (SBaseUnicode < 0 || SBaseUnicode >= SCount) {
           firstChar = firstChar + String.fromCharCode(curUnicode);
-          continue
+          continue;
         }
         initialUnicode = initial[Math.floor(SBaseUnicode / NCount)];
         VBaseUnicode = VBase + (SBaseUnicode % NCount) / TCount;
         finaleUnicode = finale[SBaseUnicode % TCount];
         firstChar = firstChar + String.fromCharCode(initialUnicode, VBaseUnicode);
-        if (finaleUnicode != 0) {
+        if (finaleUnicode !== 0) {
           firstChar = firstChar + String.fromCharCode(finaleUnicode);
         }
       }
-      return firstChar
-    };
+      return firstChar;
+    }
 
-    this.composeKorean = function(text) {
-      return composeKorean(text);
-    };
-
-    this.backspace = function(textarea, text) {
+    function backspace(textarea, text) {
       text = decomposeKorean(text);
       if (text.length > 1) {
-        this.insertChar(textarea, this.composeKorean(text.slice(0, -1)));
+        insertChar(textarea, composeKorean(text.slice(0, -1)));
       }
-    };
+    }
 
     /**
      * Insert korean char to the textarea
      * @param {Object} textarea
      * @param {String} char
      */
-    this.insertChar = function(textarea, char) {
+    function insertChar(textarea, char) {
       var start = getSelectionStart(textarea),
         end = getSelectionEnd(textarea),
-        len = textarea.value.length;
+        len = displayText.length;
 
-      textarea.value = textarea.value.substring(0, start) + char + textarea.value.substring(end, len);
+      displayText = displayText.substring(0, start) + char + displayText.substring(end, len);
       setCharInPosition(textarea, start + char.length, 0);
-    };
+    }
 
     /**
      * Delete korean char to the textarea
      */
-    this.deleteChar = function(textarea, len) {
+    function deleteChar(textarea, len) {
       var start = getSelectionStart(textarea),
         end = getSelectionEnd(textarea);
 
       if (len > start) {
-        len = start
+        len = start;
       }
-      var newChar = textarea.value.substring(start - len, end);
-      textarea.value = textarea.value.substring(0, start - len) + textarea.value.substring(end);
+      var removedChar = displayText.substring(start - len, end);
+      displayText = displayText.substring(0, start - len) + displayText.substring(end);
       setCharInPosition(textarea, start - len, 0);
-      return newChar
-    };
-
-    this.getModOn = function(){
-      return modOn;
-    };
-
-    this.getModCaps = function(){
-      return modCaps;
-    };
-
-    this.getMacChars = function(){
-      return macChars;
-    };
+      return removedChar;
+    }
 
     /**
-     * Insert translated char to textarea
+     * Insert relative korean char to textarea
      * @param {Object} textarea
      * @param {Event} e
      * @param {Boolean} keyDown
      */
-    this.activateKey = function(textarea, e, keyDown) {
-      var key = (e.keyCode) ? e.keyCode : e.which,
-        keyString = key.toString(),
-        ctrlKey = e.ctrlKey,
-        shiftKey = e.shiftKey,
-        altKey = e.altKey,
-        char;
+    this.activateKey = function(textarea, key, type) {
+      var keyString  = key.toString(),
+          preventKey = false,
+          keyDown    = type === 'keydown'? true:false,
+          keyUp      = type === 'keyup'? true:false,
+          click      = type === 'click'? true:false,
+          char;
 
-      macChars['bottom'][3].active = ctrlKey;
-      macChars['bottom'][5].active = ctrlKey;
-      macChars['zxcvb'][0].active = shiftKey;
-      macChars['zxcvb'][11].active = shiftKey;
-      macChars['bottom'][2].active = altKey;
-      macChars['bottom'][6].active = altKey;
+      macChars.bottom[3].active = ctrlKey;
+      macChars.bottom[5].active = ctrlKey;
+      macChars.zxcvb[0].active = shiftKey;
+      macChars.zxcvb[11].active = shiftKey;
+      macChars.bottom[2].active = altKey;
+      macChars.bottom[6].active = altKey;
 
       // If shiftKey pressed, show modified chars
       modOn = modCaps;
@@ -333,7 +344,9 @@ angular.module('virtualKeyboardWithAngularApp')
           Loop2:
             for (var i = 0, l = macChars[row].length; i < l; i++) {
               if (macChars[row][i].keyCode === keyString) {
-                macChars[row][i].active = keyDown;
+                if(!click) {
+                  macChars[row][i].active = keyDown;
+                }
 
                 if(modOn && macChars[row][i].m !== ''){
                   char = macChars[row][i].m;
@@ -355,18 +368,20 @@ angular.module('virtualKeyboardWithAngularApp')
             }
         }
 
-      if (!keyDown) {
+      if (keyUp) {
         $rootScope.$apply();
-        return true;
+        return false;
       }
+
+      var lastChar;
 
       // Execute key`s effect
       switch (key) {
         case 46: // backspace
-          if(textarea.value.length > 0) {
-            e.preventDefault();
-            var lastChar = this.deleteChar(textarea, 1, 0);
-            this.backspace(textarea, lastChar);
+          if(displayText.length > 0) {
+            preventKey = true;
+            lastChar = deleteChar(textarea, 1, 0);
+            backspace(textarea, lastChar);
           }
           break;
         case 16: // shift
@@ -376,14 +391,16 @@ angular.module('virtualKeyboardWithAngularApp')
           modOn = modCaps;
           break;
         default:
-          e.preventDefault();
+          preventKey = true;
           if(char) {
-            this.insertChar(textarea, char);
-            var lastChar = this.deleteChar(textarea, 2, 0);
-            this.insertChar(textarea, this.composeKorean(lastChar));
+            insertChar(textarea, char);
+            $rootScope.$apply();
+            lastChar = deleteChar(textarea, 2, 0);
+            insertChar(textarea, composeKorean(lastChar));
           }
           break;
       }
       $rootScope.$apply();
-    }
+      return preventKey;
+    };
   }]);

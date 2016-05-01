@@ -8,18 +8,21 @@
  * Controller of the virtualKeyboardWithAngularApp
  */
 angular.module('virtualKeyboardWithAngularApp')
-    .controller('KoreanCtrl', ['$scope', 'korean', function($scope, korean) {
+    .controller('KoreanCtrl', ['$scope', '$timeout', 'korean', function($scope, $timeout, korean) {
 
+    // Bind textarea value to show korean text
+    $scope.languageDisplay = korean;
     $scope.modOn = korean.getModOn();
     $scope.modCaps = korean.getModCaps();
-
-    $scope.charClick = function(){
-      alert('entrou');
-      var e = new KeyboardEvent('keydown', ['', '', 0, korean.ctrlKey, korean.shiftKey, korean.altKey, korean.metaKey, false, false, 49, 49]);
-      korean.activateKey($scope.textarea, e);
-    };
-
     $scope.macChars = korean.getMacChars();
+
+    var textarea = angular.element('#language_display');
+
+    $scope.charClick = function($event, keyCode){
+      $timeout(function() {
+        korean.activateKey(textarea[0], parseInt(keyCode), 'click');
+      });
+    };
 
     //$scope.chars = [
     //  //Row top
