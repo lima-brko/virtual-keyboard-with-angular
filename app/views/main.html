@@ -1,5 +1,28 @@
 <div class="row">
-    <div class="col-xs-12">
-        <a ng-href="#/korean">Korean Keyboard</a>
+  <div class="col-xs-12">
+    <h1>Korean Keyboard - 한국어 키보드</h1>
+    <div class="row">
+      <div class="double-display clearfix">
+        <div class="col-xs-6">
+          <textarea id="language_display" class="form-control keyboard-display" rows="4" placeholder="Type your korean text here..." ng-model="keyboardDisplay" ng-model-options="{ debounce: 1000 }" display></textarea>
+        </div>
+        <div class="col-xs-6">
+          <textarea class="form-control translate-display" ng-model="translatedDisplay" rows="4" readonly></textarea>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="keyboard clearfix" ng-class="[{'mod': keyboard.getModOn()}, {'mod-caps': keyboard.getModCaps()}]">
+      <ul ng-repeat="(group, chars) in keyboard.getMacChars()" class="{{group}}">
+        <li ng-repeat="char in chars" ng-class="char.class" ng-click="charClick($event, char.keyCode)">
+          <a href class="key c{{char.keyCode}}" ng-class="{'keydown': char.active}">
+            <span class="s">{{char.s}}</span>
+            <span class="m">{{char.m}}</span>
+            <span class="p">{{char.p}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -17,6 +17,10 @@ angular.module('virtualKeyboardWithAngularApp')
         }
       });
 
+      element.bind("paste", function(){
+            console.log(element.val());
+      });
+
       // Bind textarea to listen keyup
       element.bind("keyup", function (e) {
         korean.setModChars(e);

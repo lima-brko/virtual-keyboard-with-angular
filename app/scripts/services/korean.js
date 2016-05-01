@@ -8,7 +8,7 @@
  * Service in the virtualKeyboardWithAngularApp.
  */
 angular.module('virtualKeyboardWithAngularApp')
-  .service('korean', ['$rootScope', function ($rootScope) {
+  .service('korean', ['$rootScope', function ($rootScope, $http) {
 
     var initial = [12593, 12594, 12596, 12599, 12600, 12601, 12609, 12610, 12611, 12613, 12614, 12615, 12616, 12617, 12618, 12619, 12620, 12621, 12622],
       finale = [0, 12593, 12594, 12595, 12596, 12597, 12598, 12599, 12601, 12602, 12603, 12604, 12605, 12606, 12607, 12608, 12609, 12610, 12612, 12613, 12614, 12615, 12616, 12618, 12619, 12620, 12621, 12622],
@@ -381,6 +381,26 @@ angular.module('virtualKeyboardWithAngularApp')
           }
           break;
         case 16: // shift
+        case 37: // arrow left
+        case 38: // arrow up
+        case 39: // arrow right
+        case 40: // arrow down
+        case 9:  // tab
+          break;
+        case 32: // spacebar
+          if(keyDown) {
+            preventKey = true;
+            insertChar(textarea, "\u0020");
+          }
+          break;
+        case 13: // return
+          if(keyDown || click) {
+            preventKey = true;
+            displayText = displayText + "\n";
+            if(click){
+              textarea.focus();
+            }
+          }
           break;
         case 20: // capslock
           modCaps = !modCaps;
