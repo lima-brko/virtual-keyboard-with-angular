@@ -8,18 +8,20 @@
  * Controller of the virtualKeyboardWithAngularApp
  */
 angular.module('virtualKeyboardWithAngularApp')
-    .controller('KoreanCtrl', ['$scope', '$rootScope', '$http', '$timeout', 'korean', function($scope, $rootScope, $http, $timeout, korean) {
+    .controller('KoreanCtrl', ['$scope', '$rootScope', '$timeout', 'korean', 'translator', function($scope, $rootScope, $timeout, korean, translator) {
 
     var textarea = document.getElementById('language_display'),
         timeoutTranslate;
 
     $scope.keyboard = korean;
     $scope.keyboardDisplay = korean.getDisplayText();
+    $scope.translatedDisplay = '';
+    $scope.translateApis = [{name: 'Yandex', active:true}, {name: 'Systran',active:false}];
 
     $scope.$watch(
       function(){ return korean.getDisplayText(); },
-      function(newVal) {
-        $scope.keyboardDisplay = newVal;
+      function(text) {
+        $scope.keyboardDisplay = text;
       }
     );
 
@@ -37,20 +39,36 @@ angular.module('virtualKeyboardWithAngularApp')
       });
     };
 
+    /**
+     * Activate API
+     * @param {String} apiName
+     */
+    $scope.activateApi = function(apiName) {
+      $scope.translateApis.forEach(function(item){
+        item.active = false;
+        if(item.name === apiName) {
+          item.active = true;
+        }
+      });
+    }
+
+    // Translate after text change
     $scope.$watch('keyboardDisplay', function() {
       $timeout.cancel(timeoutTranslate);
       timeoutTranslate = $timeout(function(){
-        if(korean.getDisplayText().length > 0) {
-          //$http.get('https://www.googleapis.com/language/translate/v2?key=AIzaSyAoLHm4soXlBuYolVKLrTapBo8iWPhZd8A&source=kr&target=en&q=' + encodeURI(korean.getDisplayText()))
-          //$http.get('http://api.microsofttranslator.com/v2/Http.svc/Translate?appId=talktofill&from=ko&to=en'+
-          //  '&text=' + encodeURI(korean.getDisplayText()))
-          $http.get('https://translate.yandex.net/api/v1.5/tr.json/translate ?'+
-            'key=trnsl.1.1.20160501T185803Z.96bf64b58cb32f24.0efa272d3bdb65f158cabeb0b14faf319b33a42b'+
-            '&lang=ko-en'+
-            '&text=' + encodeURI(korean.getDisplayText())).then(function(response){
-              $scope.translatedDisplay = response.data;
-            });
+        if(korean.getDisplayText().length === 0) {
+          $scope.translatedDisplay = '';
+          return;
         }
-      }, 1000);
+        $scope.translatedDisplay = $scope.translatedDisplay + '...';
+
+        $scope.translateApis.forEach(function(item){
+          if(item.active) {
+            translator.text(item.name, 'ko', 'en', encodeURI(korean.getDisplayText())).then(function(translatedText) {
+              $scope.translatedDisplay = translatedText;
+            });
+          }
+        });
+      }, 2000);
     });
 }]);
