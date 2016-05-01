@@ -17,8 +17,7 @@ angular.module('virtualKeyboardWithAngularApp')
     $scope.keyboardDisplay = korean.getDisplayText();
 
     $scope.$watch(
-      function(){ return korean.getDisplayText() },
-
+      function(){ return korean.getDisplayText(); },
       function(newVal) {
         $scope.keyboardDisplay = newVal;
       }
