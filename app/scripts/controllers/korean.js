@@ -16,6 +16,14 @@ angular.module('virtualKeyboardWithAngularApp')
     $scope.keyboard = korean;
     $scope.keyboardDisplay = korean.getDisplayText();
 
+    $scope.$watch(
+      function(){ return korean.getDisplayText() },
+
+      function(newVal) {
+        $scope.keyboardDisplay = newVal;
+      }
+    );
+
     // Add char when click on keys
     $scope.charClick = function($event, keyCode){
       var key = parseInt(keyCode);
