@@ -8,7 +8,7 @@
  * Service in the virtualKeyboardWithAngularApp.
  */
 angular.module('virtualKeyboardWithAngularApp')
-  .service('korean', ['$rootScope', function ($rootScope, $http) {
+  .service('korean', ['$rootScope', function ($rootScope) {
 
     var initial = [12593, 12594, 12596, 12599, 12600, 12601, 12609, 12610, 12611, 12613, 12614, 12615, 12616, 12617, 12618, 12619, 12620, 12621, 12622],
       finale = [0, 12593, 12594, 12595, 12596, 12597, 12598, 12599, 12601, 12602, 12603, 12604, 12605, 12606, 12607, 12608, 12609, 12610, 12612, 12613, 12614, 12615, 12616, 12618, 12619, 12620, 12621, 12622],
