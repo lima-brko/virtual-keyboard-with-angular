@@ -107,31 +107,9 @@ angular.module('virtualKeyboardWithAngularApp')
         ]
       };
 
-    this.getModOn = function(){
-      return modOn;
-    };
-
-    this.getModCaps = function(){
-      return modCaps;
-    };
-
-    this.getMacChars = function(){
-      return macChars;
-    };
-
-    this.setModChars = function(e){
-      ctrlKey = e.ctrlKey;
-      shiftKey = e.shiftKey;
-      altKey = e.altKey;
-    };
-
-    this.getText = function(){
-      return displayText;
-    };
-
     /**
      * Get the length of start selection
-     * @param {Object} textarea
+     * @param {DOM Element} textarea
      * @returns {Number}
      */
     function getSelectionStart(textarea) {
@@ -141,7 +119,7 @@ angular.module('virtualKeyboardWithAngularApp')
 
     /**
      * Get the length of end selection
-     * @param {Object} textarea
+     * @param {DOM Element} textarea
      * @returns {Number}
      */
     function getSelectionEnd(textarea) {
@@ -151,7 +129,7 @@ angular.module('virtualKeyboardWithAngularApp')
 
     /**
      * Add the translated char to the textarea
-     * @param {Object} textarea
+     * @param {DOM Element} textarea
      * @param {Number} start
      * @param {Number} end
      */
@@ -168,6 +146,11 @@ angular.module('virtualKeyboardWithAngularApp')
       textarea.focus();
     }
 
+    /**
+     * Compose a korean char
+     * @param {String} text
+     * @returns {String}
+     */
     function composeKorean (text) {
       var textLen = text.length;
       if (textLen === 0) {
@@ -241,6 +224,11 @@ angular.module('virtualKeyboardWithAngularApp')
       return firstChar;
     }
 
+    /**
+     * Decompose a korean char
+     * @param {String} text
+     * @returns {string}
+     */
     function decomposeKorean(text) {
       var len = text.length,
           firstChar = "",
@@ -268,6 +256,11 @@ angular.module('virtualKeyboardWithAngularApp')
       return firstChar;
     }
 
+    /**
+     * Remove the last char
+     * @param {DOM element} textarea
+     * @param {String} text
+     */
     function backspace(textarea, text) {
       text = decomposeKorean(text);
       if (text.length > 1) {
@@ -277,7 +270,7 @@ angular.module('virtualKeyboardWithAngularApp')
 
     /**
      * Insert korean char to the textarea
-     * @param {Object} textarea
+     * @param {DOM element} textarea
      * @param {String} char
      */
     function insertChar(textarea, char) {
@@ -291,6 +284,9 @@ angular.module('virtualKeyboardWithAngularApp')
 
     /**
      * Delete korean char to the textarea
+     * @param {DOM element} textarea
+     * @param {Number} len
+     * @returns {string}
      */
     function deleteChar(textarea, len) {
       var start = getSelectionStart(textarea),
@@ -307,9 +303,9 @@ angular.module('virtualKeyboardWithAngularApp')
 
     /**
      * Insert relative korean char to textarea
-     * @param {Object} textarea
-     * @param {Event} e
-     * @param {Boolean} keyDown
+     * @param {DOM element} textarea
+     * @param {Number} key
+     * @param {String} type
      */
     this.activateKey = function(textarea, key, type) {
       var keyString  = key.toString(),
@@ -402,5 +398,63 @@ angular.module('virtualKeyboardWithAngularApp')
       }
       $rootScope.$apply();
       return preventKey;
+    };
+
+    /**
+     * Get modOn
+     * @returns {boolean}
+     */
+    this.getModOn = function(){
+      return modOn;
+    };
+
+    /**
+     * Get modCaps
+     * @returns {boolean}
+     */
+    this.getModCaps = function(){
+      return modCaps;
+    };
+
+    /**
+     * Set modCaps
+     * @param state
+     */
+    this.setModCaps = function(state){
+      modCaps = state;
+    };
+
+    /**
+     * Set modOn
+     * @param state
+     */
+    this.setModOn = function(state){
+      modOn = state;
+    };
+
+    /**
+     * Get macChars
+     * @returns {{top: *[], qwert: *[], asdfg: *[], zxcvb: *[], bottom: *[]}}
+     */
+    this.getMacChars = function(){
+      return macChars;
+    };
+
+    /**
+     * Set modChars
+     * @param {KeyboardEvent} e
+     */
+    this.setModChars = function(e){
+      ctrlKey = e.ctrlKey;
+      shiftKey = e.shiftKey;
+      altKey = e.altKey;
+    };
+
+    /**
+     * Get displayText
+     * @returns {string}
+     */
+    this.getDisplayText = function(){
+      return displayText;
     };
   }]);
