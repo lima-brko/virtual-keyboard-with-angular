@@ -136,10 +136,10 @@ angular.module('virtualKeyboardWithAngularApp')
     function setCharInPosition(textarea, start, end) {
       var len = displayText.length;
       if (start > len) {
-          start = len
+          start = len;
       }
       if (start + end > len) {
-          end = len - end
+          end = len - end;
       }
       // Apply is needed to update text in textarea model
       $rootScope.$apply();
