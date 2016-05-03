@@ -3,11 +3,13 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/.gitignore" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/.jscsrc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Gruntfile.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/README.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/controllers/korean.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/directives/display.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/services/korean.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/scripts/services/languages.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/scripts/services/translator.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/styles/global.scss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/styles/keyboard/default.scss" charset="UTF-8" />
@@ -15,5 +17,6 @@
     <file url="file://$PROJECT_DIR$/app/styles/main.scss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/korean/keyboard.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/main.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bower.json" charset="UTF-8" />
   </component>
 </project>

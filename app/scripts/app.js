@@ -10,7 +10,6 @@
  */
 angular
   .module('virtualKeyboardWithAngularApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',

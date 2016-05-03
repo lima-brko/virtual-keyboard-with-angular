@@ -8,7 +8,7 @@
  * Controller of the virtualKeyboardWithAngularApp
  */
 angular.module('virtualKeyboardWithAngularApp')
-    .controller('KoreanCtrl', ['$scope', '$rootScope', '$timeout', 'korean', 'translator', function($scope, $rootScope, $timeout, korean, translator) {
+    .controller('KoreanCtrl', ['$scope', '$rootScope', '$timeout', 'languages', 'korean', 'translator', function($scope, $rootScope, $timeout, languages, korean, translator) {
 
     var textarea = document.getElementById('language_display'),
         timeoutTranslate;
@@ -17,7 +17,9 @@ angular.module('virtualKeyboardWithAngularApp')
     $scope.keyboardDisplay = korean.getDisplayText();
     $scope.translatedDisplay = '';
     $scope.translator = translator;
+    $scope.languages = languages;
 
+    // Check if textarea has some change
     $scope.$watch(
       function(){ return korean.getDisplayText(); },
       function(text) {
@@ -31,7 +33,7 @@ angular.module('virtualKeyboardWithAngularApp')
             return;
           }
           $scope.translatedDisplay = $scope.translatedDisplay + '...';
-          translator.translateText(encodeURI(korean.getDisplayText())).then(function(translatedText) {
+          translator.translateText(encodeURI(korean.getDisplayText()), languages.getSourceLanguageAcronym(), languages.getTargetLanguageAcronym()).then(function(translatedText) {
             $scope.translatedDisplay = translatedText;
           });
         }, 2000);
@@ -51,4 +53,9 @@ angular.module('virtualKeyboardWithAngularApp')
         korean.activateKey(textarea, parseInt(keyCode), 'click');
       });
     };
+
+    // Change language activated and verify if has Keyboard
+    $scope.setLanguage = function(origin, languageAcronym){
+      languages.setLanguage(origin, languageAcronym);
+    }
 }]);

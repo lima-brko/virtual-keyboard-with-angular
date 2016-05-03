@@ -6,10 +6,10 @@
           <div class="col-xs-12 col-md-6">
             <div class="btn-group">
               <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{translator.getSourceLanguageName()}} <span class="caret"></span>
+                {{languages.getSourceLanguageName()}} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li ng-repeat="language in translator.getLanguages()"><a href ng-click="translator.changeLanguage('source', language.acronym)">{{language.name}}</a></li>
+                <li ng-repeat="language in languages.getLanguages()"><a href ng-click="setLanguage('source', language.acronym)">{{language.name}}</a></li>
               </ul>
             </div>
           </div>
@@ -20,22 +20,22 @@
                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{translator.getActiveAPIName()}} <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-right">
                   <li ng-repeat="translateAPI in translator.getTranslateAPIs()"><a href ng-click="translator.setActiveAPI(translateAPI.name)">{{translateAPI.name}}</a></li>
                 </ul>
               </div>
             </div>
             <div class="btn-group">
               <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{translator.getTargetLanguageName()}} <span class="caret"></span>
+                {{languages.getTargetLanguageName()}} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li ng-repeat="language in translator.getLanguages()"><a href ng-click="translator.changeLanguage('target', language.acronym)">{{language.name}}</a></li>
+                <li ng-repeat="language in languages.getLanguages()"><a href ng-click="languages.setLanguage('target', language.acronym)">{{language.name}}</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xs-12 col-md-6">
-            <textarea id="language_display" class="form-control keyboard-display" rows="3" placeholder="Type your {{translator.getSourceLanguageName()}} text here..." ng-model="keyboardDisplay" ng-model-options="{ debounce: 1000 }" display></textarea>
+            <textarea id="language_display" class="form-control keyboard-display" rows="3" placeholder="Type your {{languages.getSourceLanguageName()}} text here..." ng-model="keyboardDisplay" ng-model-options="{ debounce: 1000 }" display></textarea>
           </div>
           <div class="col-xs-6 hidden-xs">
             <div class="translate-display">{{translatedDisplay}}</div>

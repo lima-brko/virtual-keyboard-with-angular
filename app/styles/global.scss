@@ -41,18 +41,11 @@ h1 {
 }
 
 .footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  text-align: right;
+  text-align: center;
+  padding: 20px;
+  color: #CED1D8;
 
   p {
-    margin: 0;
-    padding: 0 15px 15px 0;
-    font-size: 1.6rem;
-    line-height: 16px;
-    color: #aeaeae;
-
     a {
       color: $white;
     }
@@ -61,7 +54,5 @@ h1 {
 
 @media only screen and (max-width: 830px) {
   .footer {
-    position: relative;
-    padding: 20px;
   }
 }
