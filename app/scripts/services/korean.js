@@ -136,13 +136,26 @@ angular.module('virtualKeyboardWithAngularApp')
     function setCharInPosition(textarea, start, end) {
       var len = displayText.length;
       if (start > len) {
-        start = len;
+          start = len
       }
       if (start + end > len) {
-        end = len - end;
+          end = len - end
       }
+      // Apply is needed to update text in textarea model
+      $rootScope.$apply();
+
       textarea.focus();
-      textarea.setSelectionRange(start, start + end);
+      if (textarea.setSelectionRange) {
+          textarea.setSelectionRange(start, start + end);
+      } else {
+          if (textarea.createTextRange) {
+              var range = textarea.createTextRange();
+              range.collapse(true);
+              range.moveEnd("character", start + end);
+              range.moveStart("character", start);
+              range.select();
+          }
+      }
       textarea.focus();
     }
 
@@ -285,19 +298,27 @@ angular.module('virtualKeyboardWithAngularApp')
     /**
      * Delete korean char to the textarea
      * @param {DOM element} textarea
-     * @param {Number} len
+     * @param {Number} l
      * @returns {string}
      */
-    function deleteChar(textarea, len) {
+    function deleteChar(textarea, l) {
       var start = getSelectionStart(textarea),
-        end = getSelectionEnd(textarea);
+        end = getSelectionEnd(textarea),
+        len = textarea.value.length,
+        removedLen = end - start,
+        removedChar;
 
-      if (len > start) {
-        len = start;
+      // If has selected more than one char
+      if((removedLen) > 0) {
+        removedChar = displayText.substring(start, start + removedLen);
+        displayText = displayText.substring(0, start) + displayText.substring(end, end + len);
+        setCharInPosition(textarea, start, 0);
+        return removedChar;
       }
-      var removedChar = displayText.substring(start - len, end);
-      displayText = displayText.substring(0, start - len) + displayText.substring(end);
-      setCharInPosition(textarea, start - len, 0);
+
+      removedChar = displayText.substring(start - l, end);
+      displayText = displayText.substring(0, start - l) + displayText.substring(end);
+      setCharInPosition(textarea, start - l, 0);
       return removedChar;
     }
 
@@ -332,6 +353,11 @@ angular.module('virtualKeyboardWithAngularApp')
       if(key === 8 || key === 46) {
         key = 46;
         keyString = "46";
+      }
+
+      // If Ctrl + A|C|V|X|Y|Z 
+      if ((key == 65 || key == 67 || key == 86 || key == 88 || key == 89 || key == 90) && (ctrlKey && !altKey && !shiftKey)) {
+          return false;
       }
 
       // Activate or deactivate key in layout
@@ -377,7 +403,9 @@ angular.module('virtualKeyboardWithAngularApp')
           if(displayText.length > 0) {
             preventKey = true;
             lastChar = deleteChar(textarea, 1, 0);
-            backspace(textarea, lastChar);
+            if(lastChar.length === 1) {
+              backspace(textarea, lastChar);
+            }
           }
           break;
         case 16: // shift
@@ -416,8 +444,16 @@ angular.module('virtualKeyboardWithAngularApp')
           }
           break;
       }
-      $rootScope.$apply();
       return preventKey;
+    };
+
+    /**
+     * Add text to current position in textarea
+     * @param {DOM Element} textarea
+     * @param {String} text
+     */
+    this.insertText = function(textarea, text){
+      insertChar(textarea, text);
     };
 
     /**

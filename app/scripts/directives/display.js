@@ -17,8 +17,10 @@ angular.module('virtualKeyboardWithAngularApp')
         }
       });
 
-      element.bind("paste", function(){
-            console.log(element.val());
+      // Bind textarea to listen paste
+      element.bind("paste", function(e){
+        korean.insertText(this, e.originalEvent.clipboardData.getData('text/plain'));
+        e.preventDefault();
       });
 
       // Bind textarea to listen keyup
