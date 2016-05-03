@@ -13,23 +13,37 @@ $keyboardBg: #CED1D8;
   }
 }
 
-.keyboard-display, .translate-display {
-    width: 100%;
-    border: 1px solid #d6d6d6;
-    outline: none;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
-    -webkit-box-shadow: inset 0 1px 2px 0 #c2c2c2;
-    box-shadow: inset 0 1px 2px 0 #c2c2c2;
-    height: 74px;
-    padding: 5px 8px;
+.keyboard-display {
+  width: 100%;
+  height: 96px;
+  border: 1px solid #d6d6d6;
+  outline: none;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
+  -webkit-box-shadow: inset 0 1px 2px 0 #c2c2c2;
+  box-shadow: inset 0 1px 2px 0 #c2c2c2;
+  height: 74px;
+  padding: 5px 8px;
+  font-size: 2rem;
 
-    &:focus {
-        -webkit-box-shadow: 0 0 4px 0 #158cfb,inset 0 1px 4px 0 #c2c2c2;
-        box-shadow: 0 0 4px 0 #158cfb,inset 0 1px 4px 0 #c2c2c2;
-        border: 1px solid #158cfb;
-    }
+  &:focus {
+      -webkit-box-shadow: 0 0 4px 0 #158cfb,inset 0 1px 4px 0 #c2c2c2;
+      box-shadow: 0 0 4px 0 #158cfb,inset 0 1px 4px 0 #c2c2c2;
+      border: 1px solid #158cfb;
+  }
+}
+
+.translate-display {
+  height: 96px;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 4px;
+  padding: 5px 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3) inset;
+  -webkit-box-shadow: inset 0 1px 2px 0 #c2c2c2;
+  box-shadow: inset 0 1px 2px 0 #c2c2c2;
+  font-size: 2rem;
 }
 
 .keyboard {

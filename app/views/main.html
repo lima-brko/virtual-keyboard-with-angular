@@ -4,19 +4,41 @@
     <div class="row">
       <div class="double-display clearfix">
           <div class="col-xs-12 col-md-6">
-            <h5>Korean</h5>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{translator.getSourceLanguageName()}} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="language in translator.getLanguages()"><a href ng-click="translator.changeLanguage('source', language.acronym)">{{language.name}}</a></li>
+              </ul>
+            </div>
           </div>
           <div class="col-xs-6 hidden-xs">
             <div class="pull-right">
-              <small>Translated by </small><button ng-repeat="translateApi in translateApis" class="btn btn-default btn-xs" ng-click="activateApi(translateApi.name)" ng-class="{'btn-primary': translateApi.active}">{{translateApi.name}}</button>
+              <small>Translated by </small>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{translator.getActiveAPIName()}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="translateAPI in translator.getTranslateAPIs()"><a href ng-click="translator.setActiveAPI(translateAPI.name)">{{translateAPI.name}}</a></li>
+                </ul>
+              </div>
             </div>
-            <h5>English</h5>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{translator.getTargetLanguageName()}} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="language in translator.getLanguages()"><a href ng-click="translator.changeLanguage('target', language.acronym)">{{language.name}}</a></li>
+              </ul>
+            </div>
           </div>
           <div class="col-xs-12 col-md-6">
-            <textarea id="language_display" class="form-control keyboard-display" rows="4" placeholder="Type your korean text here..." ng-model="keyboardDisplay" ng-model-options="{ debounce: 1000 }" display></textarea>
+            <textarea id="language_display" class="form-control keyboard-display" rows="3" placeholder="Type your {{translator.getSourceLanguageName()}} text here..." ng-model="keyboardDisplay" ng-model-options="{ debounce: 1000 }" display></textarea>
           </div>
           <div class="col-xs-6 hidden-xs">
-            <textarea class="form-control translate-display" ng-model="translatedDisplay" rows="4" readonly></textarea>
+            <div class="translate-display">{{translatedDisplay}}</div>
           </div>
       </div>
     </div>

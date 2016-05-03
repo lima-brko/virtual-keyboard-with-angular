@@ -16,12 +16,25 @@ angular.module('virtualKeyboardWithAngularApp')
     $scope.keyboard = korean;
     $scope.keyboardDisplay = korean.getDisplayText();
     $scope.translatedDisplay = '';
-    $scope.translateApis = [{name: 'Yandex', active:true}, {name: 'Systran',active:false}];
+    $scope.translator = translator;
 
     $scope.$watch(
       function(){ return korean.getDisplayText(); },
       function(text) {
         $scope.keyboardDisplay = text;
+
+        // Translate after text change
+        $timeout.cancel(timeoutTranslate);
+        timeoutTranslate = $timeout(function(){
+          if(korean.getDisplayText().length === 0) {
+            $scope.translatedDisplay = '';
+            return;
+          }
+          $scope.translatedDisplay = $scope.translatedDisplay + '...';
+          translator.translateText(encodeURI(korean.getDisplayText())).then(function(translatedText) {
+            $scope.translatedDisplay = translatedText;
+          });
+        }, 2000);
       }
     );
 
@@ -38,37 +51,4 @@ angular.module('virtualKeyboardWithAngularApp')
         korean.activateKey(textarea, parseInt(keyCode), 'click');
       });
     };
-
-    /**
-     * Activate API
-     * @param {String} apiName
-     */
-    $scope.activateApi = function(apiName) {
-      $scope.translateApis.forEach(function(item){
-        item.active = false;
-        if(item.name === apiName) {
-          item.active = true;
-        }
-      });
-    };
-
-    // Translate after text change
-    $scope.$watch('keyboardDisplay', function() {
-      $timeout.cancel(timeoutTranslate);
-      timeoutTranslate = $timeout(function(){
-        if(korean.getDisplayText().length === 0) {
-          $scope.translatedDisplay = '';
-          return;
-        }
-        $scope.translatedDisplay = $scope.translatedDisplay + '...';
-
-        $scope.translateApis.forEach(function(item){
-          if(item.active) {
-            translator.text(item.name, 'ko', 'en', encodeURI(korean.getDisplayText())).then(function(translatedText) {
-              $scope.translatedDisplay = translatedText;
-            });
-          }
-        });
-      }, 2000);
-    });
 }]);

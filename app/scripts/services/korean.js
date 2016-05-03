@@ -355,8 +355,13 @@ angular.module('virtualKeyboardWithAngularApp')
         keyString = "46";
       }
 
-      // If Ctrl + A|C|V|X|Y|Z 
-      if ((key == 65 || key == 67 || key == 86 || key == 88 || key == 89 || key == 90) && (ctrlKey && !altKey && !shiftKey)) {
+      // If Ctrl + A|C|V|X|Y|Z
+      if ((key === 65 || key === 67 || key === 86 || key === 88 || key === 89 || key === 90) && (ctrlKey && !altKey && !shiftKey)) {
+          return false;
+      }
+
+      // If Home|End
+      if (key === 35 || key === 36) {
           return false;
       }
 
