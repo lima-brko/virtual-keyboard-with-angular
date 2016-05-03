@@ -1,5 +1,5 @@
-/node_modules
-/.tmp
-/.sass-cache
 /bower_components
-/nbproject/private/
+/node_modules
+.tmp
+.sass-cache
+.idea
