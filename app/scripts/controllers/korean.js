@@ -19,7 +19,9 @@ angular.module('virtualKeyboardWithAngularApp')
     $scope.translator = translator;
     $scope.languages = languages;
 
-    // Check if textarea has some change
+    /**
+     * Check if textarea has some change
+     */
     $scope.$watch(
       function(){ return korean.getDisplayText(); },
       function(text) {
@@ -28,19 +30,16 @@ angular.module('virtualKeyboardWithAngularApp')
         // Translate after text change
         $timeout.cancel(timeoutTranslate);
         timeoutTranslate = $timeout(function(){
-          if(korean.getDisplayText().length === 0) {
-            $scope.translatedDisplay = '';
-            return;
-          }
-          $scope.translatedDisplay = $scope.translatedDisplay + '...';
-          translator.translateText(encodeURI(korean.getDisplayText()), languages.getSourceLanguageAcronym(), languages.getTargetLanguageAcronym()).then(function(translatedText) {
-            $scope.translatedDisplay = translatedText;
-          });
+          $scope.updateTranslatedText();
         }, 2000);
       }
     );
 
-    // Add char when click on keys
+    /**
+     * Add char when click on keys
+     * @param {Click Event} $event
+     * @param {String} keyCode
+     */
     $scope.charClick = function($event, keyCode){
       var key = parseInt(keyCode);
       $timeout(function() {
@@ -54,8 +53,37 @@ angular.module('virtualKeyboardWithAngularApp')
       });
     };
 
-    // Change language activated and verify if has Keyboard
+    /**
+     * Change language activated and verify if has Keyboard
+     * @param {String} origin
+     * @param {String} languageAcronym
+     */
     $scope.setLanguage = function(origin, languageAcronym){
       languages.setLanguage(origin, languageAcronym);
-    }
+      $scope.updateTranslatedText();
+    };
+
+    /**
+     * Change the active API and update the current text translation
+     * @param {String} APIName
+     */
+    $scope.setAPI = function(APIName){
+      translator.setActiveAPI(APIName);
+      $scope.updateTranslatedText();
+    };
+
+    /**
+     * Update the text translated
+     */
+    $scope.updateTranslatedText = function(){
+      if(korean.getDisplayText().length === 0) {
+        $scope.translatedDisplay = '';
+        return;
+      }
+
+      $scope.translatedDisplay = $scope.translatedDisplay + '...';
+      translator.translateText(encodeURI(korean.getDisplayText()), languages.getSourceLanguageAcronym(), languages.getTargetLanguageAcronym()).then(function(translatedText) {
+        $scope.translatedDisplay = translatedText;
+      });
+    };
 }]);

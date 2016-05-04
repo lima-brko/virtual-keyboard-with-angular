@@ -11,11 +11,21 @@ angular.module('virtualKeyboardWithAngularApp')
   .service('languages', function () {
 
     var languages = [
+        {name: 'Arabic', acronym: 'ar'},
+        {name: 'Chinese', acronym: 'zh'},
+        {name: 'English',acronym: 'en'},
+        {name: 'French',acronym: 'fr'},
+        {name: 'German',acronym: 'de'},
+        {name: 'Hindi', acronym: 'hi'},
+        {name: 'Japanese', acronym: 'ja'},
         {name: 'Korean', acronym: 'ko'},
-        {name: 'English',acronym: 'en'}
+        {name: 'Portuguese', acronym: 'pt'},
+        {name: 'Spanish', acronym: 'es'},
+        {name: 'Russian', acronym: 'ru'},
+        {name: 'Turkish', acronym: 'tr'}
       ],
-      source = 0,
-      target = 1;
+      source = 7,
+      target = 2;
 
     /**
      * Get current source language name

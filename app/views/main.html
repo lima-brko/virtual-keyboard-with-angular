@@ -9,7 +9,7 @@
                 {{languages.getSourceLanguageName()}} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li ng-repeat="language in languages.getLanguages()"><a href ng-click="setLanguage('source', language.acronym)">{{language.name}}</a></li>
+                <li><a href>The only available virtual keyboard is Korean for now.</a></li>
               </ul>
             </div>
           </div>
@@ -21,7 +21,7 @@
                   {{translator.getActiveAPIName()}} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
-                  <li ng-repeat="translateAPI in translator.getTranslateAPIs()"><a href ng-click="translator.setActiveAPI(translateAPI.name)">{{translateAPI.name}}</a></li>
+                  <li ng-repeat="translateAPI in translator.getTranslateAPIs()"><a href ng-click="setAPI(translateAPI.name)">{{translateAPI.name}}</a></li>
                 </ul>
               </div>
             </div>
@@ -30,7 +30,7 @@
                 {{languages.getTargetLanguageName()}} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li ng-repeat="language in languages.getLanguages()"><a href ng-click="languages.setLanguage('target', language.acronym)">{{language.name}}</a></li>
+                <li ng-repeat="language in languages.getLanguages()"><a href ng-click="setLanguage('target', language.acronym)">{{language.name}}</a></li>
               </ul>
             </div>
           </div>

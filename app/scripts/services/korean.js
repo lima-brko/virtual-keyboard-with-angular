@@ -449,6 +449,7 @@ angular.module('virtualKeyboardWithAngularApp')
           }
           break;
       }
+      $rootScope.$apply();
       return preventKey;
     };
 

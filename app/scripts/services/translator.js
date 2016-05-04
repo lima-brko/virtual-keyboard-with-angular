@@ -9,8 +9,11 @@
  */
 angular.module('virtualKeyboardWithAngularApp')
   .service('translator', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
-    var APIs = [{name: 'Yandex'}, {name: 'Systran'}],
-        api = 0;
+    var APIs = [
+        {name: 'Yandex'},
+        {name: 'Systran'}
+      ],
+      api = 0;
 
     /**
      * Set API to use in translation
@@ -48,6 +51,11 @@ angular.module('virtualKeyboardWithAngularApp')
      * @returns {Function|promise}
      */
     this.translateText = function(text, source, target){
+
+      if(!text.length) {
+        return false;
+      }
+
       var translation = '',
           deferred = $q.defer();
 
