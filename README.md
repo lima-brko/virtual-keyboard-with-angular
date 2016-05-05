@@ -18,9 +18,14 @@ npm install -g grunt-cli bower
 gem install compass
 ```
 
-## Run
-`grunt` for building
-`grunt serve` for preview
-`grunt test` for unit tests with karma.
+```
+npm install
+bower install
+```
 
-Feel free to collaborate with this project adding some languages, new API's, codes improvements or just sharing with more people =)
+## Run
+- `grunt` for building
+- `grunt serve` for preview
+- `grunt test` for unit tests with karma.
+
+Feel free to collaborate with this project adding some languages, new API's, codes improvements or just sharing to more people =)
