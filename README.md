@@ -1,10 +1,10 @@
 # Virtual Keyboard with Angular
-This project is able to support who need to type a language not installed in your OS.
-Plus that, it is be able to translate on realtime the text to plenty target languages.
+This project was made to support who need to type a language not installed in your OS. 
+In addition, the written text is translated on realtime to chosen target language.
 
 ## Demo page
 The first language supported to virtual keyboard is Korean.
-[Click me to write some korean](http://fill-lima.github.io/virtual-keyboard-with-angular)
+[Click here to write some korean](http://fill-lima.github.io/virtual-keyboard-with-angular)
 
 ## How to install
 
@@ -24,8 +24,8 @@ bower install
 ```
 
 ## Run
-- `grunt` for building
-- `grunt serve` for preview
-- `grunt test` for unit tests with karma.
+* `grunt` for building
+* `grunt serve` for preview
+* `grunt test` for unit tests with karma.
 
 Feel free to collaborate with this project adding some languages, new API's, codes improvements or just sharing to more people =)
