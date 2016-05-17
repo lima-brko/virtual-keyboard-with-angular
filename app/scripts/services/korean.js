@@ -32,9 +32,9 @@ angular.module('virtualKeyboardWithAngularApp')
       //metaKey = false,
       macChars = {
         'top': [
-          {"keyCode": "192", "index": "0", "s": "", "m": "~", "p": "`", "class": ["center"]},
-          {"keyCode": "49", "index": "1", "s": "", "m": "!", "p": "1", "class": []},
-          {"keyCode": "50", "index": "2", "s": "", "m": "@", "p": "2", "class": []},
+          {"keyCode": "192", "s": "", "m": "~", "p": "`", "class": ["center"]},
+          {"keyCode": "49", "s": "", "m": "!", "p": "1", "class": []},
+          {"keyCode": "50", "s": "", "m": "@", "p": "2", "class": []},
           {"keyCode": "51", "index": "3", "s": "", "m": "#", "p": "3", "class": []},
           {"keyCode": "52", "index": "4", "s": "", "m": "$", "p": "4", "class": []},
           {"keyCode": "53", "index": "5", "s": "", "m": "%", "p": "5", "class": []},

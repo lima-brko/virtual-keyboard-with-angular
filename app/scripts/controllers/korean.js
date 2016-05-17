@@ -86,4 +86,24 @@ angular.module('virtualKeyboardWithAngularApp')
         $scope.translatedDisplay = translatedText;
       });
     };
+    
+    /**
+     * Share facebook feed
+     */
+    $scope.shareTranslated = function() {
+      var description = 'Korean: '+korean.getDisplayText() + ' Translated: ' + $scope.translatedDisplay;
+      if(korean.getDisplayText() === '') {
+        description = 'Write your text now...';
+      }
+      
+      FB.ui({
+        method: 'feed',
+        link: 'https://studykoreanonline.com/translator',
+        caption: 'Virtual Keyboard and Translator',
+        picture: 'http://studykoreanonline.com/img/sko.png',
+        description: description
+      }, function(response){
+        console.log('Text shared.');
+      });
+    };
 }]);

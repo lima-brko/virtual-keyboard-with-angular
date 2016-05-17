@@ -2,8 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
+    <title>Your Website Title</title>
+    <!-- Comment #1: OG Tags -->
+    <meta property="og:url"           content="http://studykoreanonline.com" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Study Korean Online" />
+    <meta property="og:description"   content="Virtual Keyboard and Translator" />
+    <meta property="og:image"         content="http://studykoreanonline.com/img/sko.png" />
+    
+    <meta name="description" content="Virtual Keyboard and Translator">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -42,6 +49,29 @@
 
         ga('create', 'UA-53020653-2');
         ga('send', 'pageview');
+    </script>
+    
+    <!-- Github follow button. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <!-- Facebook sdk -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1689303184656428',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
