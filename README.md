@@ -1,3 +1,5 @@
+**This project is not maintained. Instead check out the [GhostKeyboard](https://github.com/fill-lima/ghost-keyboard)**
+
 # Virtual Keyboard with Angular
 This project was made to support who need to type a language not installed in your OS. 
 In addition, the written text is translated on realtime to chosen target language.
@@ -29,3 +31,6 @@ bower install
 * `grunt test` for unit tests with karma.
 
 Feel free to collaborate with this project adding some languages, new API's, codes improvements or just sharing to more people =)
+
+## License
+[MIT © Felipe Lima](./LICENSE)
